@@ -1,6 +1,7 @@
 package org.example;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -18,28 +19,8 @@ public class Main {
         driver.get("https://udemy.com");
 
 
+        WebElement form = driver.findElement(By.xpath("//input[@name='q']"));
+        form.sendKeys("Java", Keys.ENTER);
 
-       Thread thread2 = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                WebElement form = driver.findElement(By.xpath("//input[@name='q']"));
-                form.sendKeys("Java");
-
-            }
-        });
-
-        Thread thread3 = new Thread(new Runnable() {
-            @Override
-            public void run() {
-
-                WebElement searchButton = driver.findElement(By.xpath("//button[@type='submit']"));
-                searchButton.click();
-
-            }
-        });
-
-        thread2.start();
-        thread2.join();
-        thread3.start();
     }
 }
